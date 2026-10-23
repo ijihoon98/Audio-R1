@@ -1,0 +1,118 @@
+WEBVTT
+
+00:00.000 --> 00:05.125
+We introduce Audio-R1, reinforcement learning
+that helps audio-language models listen and
+
+00:05.125 --> 00:07.198
+reason, using puzzles like this one.
+
+00:07.483 --> 00:14.381
+[♪ three pieces, shuffled]
+
+00:14.383 --> 00:17.246
+Three pieces of one recording, shuffled.
+
+00:17.246 --> 00:18.749
+Which order is right?
+
+00:20.233 --> 00:21.580
+Two, one, three.
+
+00:21.867 --> 00:27.745
+[♪ the original order]
+
+00:27.750 --> 00:34.413
+Before our training, Qwen2.5-Omni solves
+puzzles like this just 27 percent of the time.
+
+00:34.413 --> 00:36.481
+After Audio-R1, 60 percent.
+
+00:37.567 --> 00:41.003
+We make these puzzles by
+cutting and shuffling raw audio,
+
+00:41.003 --> 00:43.475
+so every answer is known by construction:
+
+00:43.475 --> 00:44.440
+no human labels.
+
+00:44.733 --> 00:46.674
+The model reasons, then answers.
+
+00:46.674 --> 00:51.101
+A simple rule checks the answer, plus
+a small bonus for the right format,
+
+00:51.101 --> 00:52.860
+and that check is the reward.
+
+00:53.150 --> 00:57.748
+Eight answers per puzzle; GRPO favors
+those above the group average.
+
+00:58.833 --> 01:01.220
+Besides ordering, there's Region Inpainting:
+
+01:01.220 --> 01:05.614
+it silences the middle of a clip and asks
+which of four candidates fills the gap.
+
+01:05.900 --> 01:10.033
+Identity Detection asks which candidates
+are the same recording as an anchor.
+
+01:11.117 --> 01:16.457
+On Qwen2.5-Omni, each puzzle helps on its
+own, and all three together work best.
+
+01:16.750 --> 01:19.066
+Same puzzles, supervised fine-tuning:
+
+01:19.066 --> 01:22.696
+it learns them about as well,
+but transfers only modestly.
+
+01:22.696 --> 01:25.388
+Reinforcement learning transfers much more.
+
+01:26.783 --> 01:30.195
+An LLM-based judge model scored
+the traces, given the audio,
+
+01:30.195 --> 01:32.356
+the question and the reference answer.
+
+01:32.650 --> 01:36.475
+It scores completeness, logical
+coherence, and audio groundedness:
+
+01:36.475 --> 01:39.895
+whether claims about the sound
+are really in the recording.
+
+01:40.183 --> 01:44.696
+Audio-R1 outperforms base and SFT
+consistently on all three scores.
+
+01:44.696 --> 01:47.862
+Fine-tuning mostly scores below the base model:
+
+01:47.862 --> 01:50.354
+imitating answers can hurt reasoning.
+
+01:51.450 --> 01:56.326
+On four audio-language models, Audio-R1
+improved every benchmark we tested.
+
+01:56.617 --> 02:01.214
+With Qwen3-Omni, it reaches the highest
+scores of all the models we compared.
+
+02:01.500 --> 02:02.544
+Want to learn more?
+
+02:02.544 --> 02:04.797
+Visit our project page at the link below.
