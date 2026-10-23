@@ -1,0 +1,113 @@
+WEBVTT
+
+00:01.600 --> 00:08.498
+[♪ three pieces, shuffled]
+
+00:08.533 --> 00:11.396
+Three pieces of one recording, shuffled.
+
+00:11.396 --> 00:12.899
+Which order is right?
+
+00:14.333 --> 00:15.680
+Two, one, three.
+
+00:15.933 --> 00:21.811
+[♪ the original order]
+
+00:21.867 --> 00:28.530
+Before our training, Qwen2.5-Omni solves
+puzzles like this just 27 percent of the time.
+
+00:28.530 --> 00:30.597
+After Audio-R1, 60 percent.
+
+00:31.666 --> 00:34.091
+Audio-R1 trains on puzzles like this.
+
+00:34.091 --> 00:38.744
+We build them from raw audio, so the
+answers are known by construction:
+
+00:38.744 --> 00:39.793
+no human labels.
+
+00:40.066 --> 00:43.854
+The model reasons, then answers,
+and a simple rule checks it.
+
+00:43.854 --> 00:45.407
+That check is the reward.
+
+00:45.666 --> 00:51.192
+We sample eight answers per puzzle, and GRPO
+pushes the model toward the ones that scored.
+
+00:52.265 --> 00:53.640
+Three kinds of puzzle.
+
+00:53.640 --> 00:55.702
+You just tried Temporal Ordering.
+
+00:55.999 --> 00:57.188
+Region Inpainting:
+
+00:57.188 --> 00:59.435
+which of four clips fills the gap?
+
+00:59.732 --> 01:05.630
+[♪ the masked clip]
+
+01:05.665 --> 01:07.662
+Clip C, the missing middle.
+
+01:07.932 --> 01:08.935
+Identity Detection:
+
+01:08.935 --> 01:11.787
+which candidates are the same
+recording as the anchor?
+
+01:12.864 --> 01:18.205
+On Qwen2.5-Omni, each puzzle helps on its
+own, and all three together work best.
+
+01:18.464 --> 01:20.380
+Same puzzles, different training:
+
+01:20.380 --> 01:23.224
+supervised fine-tuning
+learns them about as well,
+
+01:23.224 --> 01:25.953
+but transfers only modestly to real benchmarks.
+
+01:25.953 --> 01:28.449
+Reinforcement learning transfers much more.
+
+01:28.731 --> 01:33.162
+A judge model also scores its reasoning
+a bit higher than both, for completeness,
+
+01:33.162 --> 01:35.186
+coherence and grounding in the audio.
+
+01:36.263 --> 01:37.146
+Try one more.
+
+01:37.397 --> 01:44.387
+[♪ three pieces, shuffled]
+
+01:44.397 --> 01:46.487
+Three, two, one.
+
+01:47.530 --> 01:52.406
+On four audio-language models, Audio-R1
+improved every benchmark we tested.
+
+01:52.663 --> 01:57.261
+With Qwen3-Omni, it reaches the highest
+scores of all the models we compared.
+
+01:57.530 --> 01:59.202
+Hear more on our project page.

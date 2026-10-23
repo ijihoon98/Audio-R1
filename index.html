@@ -183,6 +183,17 @@
 
     .demo-container { text-align: center; margin: 40px 0; }
 
+    .video-container { max-width: 960px; margin: 0 auto; }
+
+    .video-container video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background: #000000;
+    }
+
     .demo-container img {
       max-width: 100%;
       border-radius: 15px;
@@ -546,6 +557,17 @@
   </header>
 
   <div class="content">
+
+    <!-- ===================== Video ===================== -->
+    <div class="section">
+      <div class="video-container">
+        <video controls preload="metadata" playsinline poster="static/video/audio_r1_demo_poster.jpg">
+          <source src="static/video/audio_r1_demo_480p15.mp4" type="video/mp4">
+          <track kind="captions" src="static/video/audio_r1_demo_480p15.vtt" srclang="en" label="English">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
 
     <!-- ===================== Teaser ===================== -->
     <div class="section">
