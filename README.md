@@ -68,7 +68,3 @@ python data_gen/make_ordering.py   --audio-dir <audio_dir> --out-dir <out>/order
   year    = {2026}
 }
 ```
-
-## Acknowledgements
-
-The Audio-R1 logo was generated with Nano Banana.
