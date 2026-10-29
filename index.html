@@ -392,6 +392,31 @@
     }
     .result-panel .panel-figure { display: block; max-width: 100%; margin: 24px auto 0; border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); }
     .result-panel .panel-figure.narrow { max-width: 720px; width: 100%; }
+    .panel-note {
+      max-width: 820px;
+      margin: 20px auto 0;
+      padding: 18px 26px;
+      background: rgba(52, 88, 142, 0.06);
+      border: 1px solid rgba(52, 88, 142, 0.18);
+      border-radius: 12px;
+      color: var(--body);
+      line-height: 1.7;
+      text-align: center;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 12px;
+    }
+    .panel-note .note-label {
+      flex: none;
+      font-size: 0.75em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .panel-note b { color: var(--heading); }
+    @media (max-width: 768px) { .panel-note { flex-direction: column; align-items: center; gap: 4px; padding: 14px 16px; } }
     .results-table .runner-up { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
     .results-table .base-row td { background: #edf2f7; }
 
@@ -731,6 +756,7 @@
           </table>
         </div>
       </div>
+        <p class="panel-note"><span class="note-label">Takeaway</span><span>Gains range from <b>+1.0 to +4.4 percentage points</b>, with consistent improvements on self-supervised tasks.</span></p>
       </div>
 
       <!-- Q2 -->
@@ -752,11 +778,13 @@
             </table>
           </div>
         </div>
+        <p class="panel-note"><span class="note-label">Takeaway</span><span>Each single-task model improves over the base on every task and <b>ranks second</b> on its own task (underlined); multi-task training is <b>best on all tasks and benchmarks</b>.</span></p>
       </div>
 
       <!-- Q3 -->
       <div class="result-panel" id="panel-q3" role="tabpanel" aria-labelledby="tab-q3" hidden>
         <img class="panel-figure narrow" src="static/figures/results_sft_vs_rl.png" alt="Judge scores (completeness, logical coherence, audio groundedness) and accuracy for the base model, SFT and Audio-R1, on self-supervised tasks and on benchmarks" loading="lazy">
+        <p class="panel-note"><span class="note-label">Takeaway</span><span>Audio-R1 <b>raises all judge scores</b>; SFT on the same data achieves similar accuracy but mostly scores <b>below the base</b>.</span></p>
       </div>
     </div>
 
