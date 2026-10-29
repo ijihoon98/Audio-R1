@@ -715,6 +715,62 @@
       </div>
     </div>
 
+    <!-- ===================== Demo ===================== -->
+    <div class="section" id="demo">
+      <h2 class="section-title">Demo</h2>
+      <div class="text-block">
+        <p>
+          Audio-R1 trains on three self-supervised tasks designed to encourage the use of <b>acoustic</b>,
+          <b>temporal</b>, and <b>semantic</b> cues. Each task's answer is determined during construction, so a
+          rule-based verifier can check any response and turn it directly into a reward.
+        </p>
+      </div>
+
+      <div class="feature-grid" role="tablist" aria-label="Demo task">
+        <div class="feature-card" data-task="identity" role="tab" tabindex="0">
+          <h3>🎯 Identity Detection</h3>
+          <p>Given an anchor clip and candidate clips, decide which candidates come from the
+          same source recording as the anchor.</p>
+        </div>
+        <div class="feature-card" data-task="inpainting" role="tab" tabindex="0">
+          <h3>🧩 Region Inpainting</h3>
+          <p>A segment is removed from a clip; the model picks the candidate segment that fills
+          the gap, using surrounding context and acoustic continuity.</p>
+        </div>
+        <div class="feature-card" data-task="ordering" role="tab" tabindex="0">
+          <h3>⏱️ Temporal Ordering</h3>
+          <p>Segments cut from one continuous recording are shuffled; the model recovers their
+          original chronological order.</p>
+        </div>
+      </div>
+
+      <div class="demo-panel">
+        <div class="demo-nav">
+          <button class="demo-nav-btn" id="demoPrev">‹ Previous</button>
+          <span class="demo-counter" id="demoCounter">Example 1 / 1</span>
+          <button class="demo-nav-btn" id="demoNext">Next ›</button>
+        </div>
+
+        <div class="demo-body">
+          <div class="demo-card">
+            <h3>Audio Input</h3>
+            <div id="demoInputs"></div>
+            <div id="demoCandidatesWrap">
+              <h4>Candidates</h4>
+              <div id="demoCandidates"></div>
+            </div>
+            <p class="demo-hint">▶ Click a waveform to play from that point.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Question</h3>
+            <p class="demo-question" id="demoQuestion"></p>
+            <ul class="demo-options" id="demoOptions"></ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ===================== Results ===================== -->
     <div class="section" id="results">
       <h2 class="section-title">Results</h2>
@@ -785,62 +841,6 @@
       <div class="result-panel" id="panel-q3" role="tabpanel" aria-labelledby="tab-q3" hidden>
         <img class="panel-figure narrow" src="static/figures/results_sft_vs_rl.png" alt="Judge scores (completeness, logical coherence, audio groundedness) and accuracy for the base model, SFT and Audio-R1, on self-supervised tasks and on benchmarks" loading="lazy">
         <p class="panel-note"><span class="note-label">Takeaway</span><span>Audio-R1 <b>raises all judge scores</b>; SFT on the same data achieves similar accuracy but mostly scores <b>below the base</b>.</span></p>
-      </div>
-    </div>
-
-    <!-- ===================== Demo ===================== -->
-    <div class="section" id="demo">
-      <h2 class="section-title">Demo</h2>
-      <div class="text-block">
-        <p>
-          Audio-R1 trains on three self-supervised tasks designed to encourage the use of <b>acoustic</b>,
-          <b>temporal</b>, and <b>semantic</b> cues. Each task's answer is determined during construction, so a
-          rule-based verifier can check any response and turn it directly into a reward.
-        </p>
-      </div>
-
-      <div class="feature-grid" role="tablist" aria-label="Demo task">
-        <div class="feature-card" data-task="identity" role="tab" tabindex="0">
-          <h3>🎯 Identity Detection</h3>
-          <p>Given an anchor clip and candidate clips, decide which candidates come from the
-          same source recording as the anchor.</p>
-        </div>
-        <div class="feature-card" data-task="inpainting" role="tab" tabindex="0">
-          <h3>🧩 Region Inpainting</h3>
-          <p>A segment is removed from a clip; the model picks the candidate segment that fills
-          the gap, using surrounding context and acoustic continuity.</p>
-        </div>
-        <div class="feature-card" data-task="ordering" role="tab" tabindex="0">
-          <h3>⏱️ Temporal Ordering</h3>
-          <p>Segments cut from one continuous recording are shuffled; the model recovers their
-          original chronological order.</p>
-        </div>
-      </div>
-
-      <div class="demo-panel">
-        <div class="demo-nav">
-          <button class="demo-nav-btn" id="demoPrev">‹ Previous</button>
-          <span class="demo-counter" id="demoCounter">Example 1 / 1</span>
-          <button class="demo-nav-btn" id="demoNext">Next ›</button>
-        </div>
-
-        <div class="demo-body">
-          <div class="demo-card">
-            <h3>Audio Input</h3>
-            <div id="demoInputs"></div>
-            <div id="demoCandidatesWrap">
-              <h4>Candidates</h4>
-              <div id="demoCandidates"></div>
-            </div>
-            <p class="demo-hint">▶ Click a waveform to play from that point.</p>
-          </div>
-          <div class="demo-card">
-            <h3>Question</h3>
-            <p class="demo-question" id="demoQuestion"></p>
-            <ul class="demo-options" id="demoOptions"></ul>
-          </div>
-        </div>
-
       </div>
     </div>
 
