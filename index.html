@@ -362,6 +362,39 @@
     .takeaway-card h3 em { color: var(--primary); }
     .takeaway-card p { color: var(--body); line-height: 1.7; font-size: 0.95em; }
 
+    /* Q1-Q3 cards act as tabs for the result panels below */
+    .result-tab {
+      font: inherit;
+      text-align: left;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .result-tab .tk-head { display: block; color: var(--heading); font-size: 1.15em; font-weight: 700; line-height: 1.4; }
+    .result-tab .tk-head em { color: var(--primary); }
+    .result-tab:hover,
+    .result-tab[aria-selected="true"] {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(52, 88, 142, 0.15);
+      border-color: var(--primary);
+    }
+    .result-tab[aria-selected="true"] { background: #ffffff; border-width: 2px; padding: 23px 25px; }
+    .result-tab:focus-visible { outline: 3px solid rgba(52, 88, 142, 0.4); outline-offset: 2px; }
+
+    .result-panel { max-width: 960px; margin: 32px auto 0; }
+    .result-panel[hidden] { display: none; }
+    .result-panel .panel-text {
+      color: var(--body);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 820px;
+      margin: 18px auto 0;
+    }
+    .result-panel .panel-figure { display: block; max-width: 100%; margin: 24px auto 0; border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); }
+    .result-panel .panel-figure.narrow { max-width: 720px; width: 100%; }
+    .results-table .runner-up { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .results-table .base-row td { background: #edf2f7; }
+
     /* ---------- BibTeX ---------- */
     .bibtex-box { position: relative; max-width: 960px; margin: 0 auto; }
 
@@ -660,6 +693,24 @@
     <!-- ===================== Results ===================== -->
     <div class="section" id="results">
       <h2 class="section-title">Results</h2>
+
+      <div class="takeaway-grid" role="tablist" aria-label="Research questions">
+        <button type="button" class="takeaway-card result-tab" role="tab" id="tab-q1" aria-controls="panel-q1" aria-selected="true">
+          <span class="tk-label">Q1 · Gains on every backbone</span>
+          <span class="tk-head">Audio-R1 improves <em>every backbone on every benchmark</em>.</span>
+        </button>
+        <button type="button" class="takeaway-card result-tab" role="tab" id="tab-q2" aria-controls="panel-q2" aria-selected="false" tabindex="-1">
+          <span class="tk-label">Q2 · Tasks are complementary</span>
+          <span class="tk-head">The tasks give complementary signals; <em>combining all three is best</em>.</span>
+        </button>
+        <button type="button" class="takeaway-card result-tab" role="tab" id="tab-q3" aria-controls="panel-q3" aria-selected="false" tabindex="-1">
+          <span class="tk-label">Q3 · Audio-R1 reasons better</span>
+          <span class="tk-head">Audio-R1 improves <em>reasoning quality</em>, not just accuracy.</span>
+        </button>
+      </div>
+
+      <!-- Q1 -->
+      <div class="result-panel" id="panel-q1" role="tabpanel" aria-labelledby="tab-q1">
       <div class="table-card">
         <h3>Accuracy (%) with and without Audio-R1</h3>
         <div class="table-wrapper">
@@ -680,23 +731,37 @@
           </table>
         </div>
       </div>
+      <p class="panel-text">Gains range from +1.0 to +4.4 percentage points, with consistent improvements on self-supervised tasks.</p>
+      <img class="panel-figure narrow" src="static/figures/results_radar.png" alt="Radar plots for Gemma4-e4b, AF-Next-Think, Qwen2.5-Omni and Qwen3-Omni: accuracy on the three self-supervised tasks and three benchmarks, before and after Audio-R1" loading="lazy">
+      </div>
 
-      <div class="takeaway-grid">
-        <div class="takeaway-card">
-          <span class="tk-label">Q1 · Gains on every backbone</span>
-          <h3>Audio-R1 improves <em>every backbone on every benchmark</em>.</h3>
-          <p>Gains range from +1.0 to +4.4 percentage points, with consistent improvements on self-supervised tasks.</p>
+      <!-- Q2 -->
+      <div class="result-panel" id="panel-q2" role="tabpanel" aria-labelledby="tab-q2" hidden>
+        <div class="table-card">
+          <h3>Single-task vs. multi-task training (Qwen2.5-Omni, mean of 3 seeds)</h3>
+          <div class="table-wrapper">
+            <table class="results-table">
+              <thead>
+                <tr><th>Training</th><th>Identity</th><th>Inpainting</th><th>Ordering</th><th>Benchmark avg.</th></tr>
+              </thead>
+              <tbody>
+                <tr class="base-row"><td class="method-name">Base model</td><td>80.7</td><td>75.0</td><td>27.3</td><td>62.2</td></tr>
+                <tr><td class="method-name">Identity only</td><td><span class="runner-up">95.7</span></td><td>84.7</td><td>32.5</td><td>64.4</td></tr>
+                <tr><td class="method-name">Inpainting only</td><td>87.0</td><td><span class="runner-up">94.1</span></td><td>35.7</td><td><span class="runner-up">64.8</span></td></tr>
+                <tr><td class="method-name">Ordering only</td><td>82.3</td><td>88.3</td><td><span class="runner-up">53.2</span></td><td>64.0</td></tr>
+                <tr class="r1-row"><td class="method-name">Multi-task (Audio-R1)</td><td class="best-value">97.6</td><td class="best-value">96.4</td><td class="best-value">59.7</td><td class="best-value">66.2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Underlined: runner-up in each column. Benchmark avg. is over MMAR, MMAU-mini and MMAU-Pro.</p>
         </div>
-        <div class="takeaway-card">
-          <span class="tk-label">Q2 · Tasks are complementary</span>
-          <h3>The tasks give complementary signals; <em>combining all three is best</em>.</h3>
-          <p>Each single-task model improves over the base on every task and ranks second on its corresponding task; multi-task training is best on all tasks and benchmarks.</p>
-        </div>
-        <div class="takeaway-card">
-          <span class="tk-label">Q3 · Audio-R1 reasons better</span>
-          <h3>Audio-R1 improves <em>reasoning quality</em>, not just accuracy.</h3>
-          <p>It raises all judge scores; SFT on the same data achieves similar accuracy but mostly scores below the base.</p>
-        </div>
+        <p class="panel-text">Each single-task model improves over the base on every task and ranks second on its corresponding task; multi-task training is best on all tasks and benchmarks.</p>
+      </div>
+
+      <!-- Q3 -->
+      <div class="result-panel" id="panel-q3" role="tabpanel" aria-labelledby="tab-q3" hidden>
+        <img class="panel-figure narrow" src="static/figures/results_sft_vs_rl.png" alt="Judge scores (completeness, logical coherence, audio groundedness) and accuracy for the base model, SFT and Audio-R1, on self-supervised tasks and on benchmarks" loading="lazy">
+        <p class="panel-text">It raises all judge scores; SFT on the same data achieves similar accuracy but mostly scores below the base.</p>
       </div>
     </div>
 
@@ -787,6 +852,27 @@
 
 <script src="static/js/demos.js"></script>
 <script>
+(function () {
+  // Q1-Q3 result tabs
+  const tabs = Array.from(document.querySelectorAll(".result-tab"));
+  function select(tab) {
+    tabs.forEach(function (t) {
+      const on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { select(t); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+      select(next);
+      next.focus();
+    });
+  });
+})();
 (function () {
   const btn = document.getElementById("copyBibtex");
   if (!btn) return;
