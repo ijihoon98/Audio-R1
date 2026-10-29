@@ -332,6 +332,65 @@
 
     .table-note { text-align: center; color: var(--muted); font-size: 0.9em; margin-top: 12px; }
 
+    /* ---------- Key findings ---------- */
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      margin: 32px auto 0;
+    }
+
+    .takeaway-card {
+      background: var(--soft);
+      padding: 24px 26px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .takeaway-card .tk-label {
+      display: block;
+      font-size: 0.8em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .takeaway-card h3 { color: var(--heading); font-size: 1.15em; line-height: 1.4; margin-bottom: 10px; }
+    .takeaway-card h3 em { color: var(--primary); }
+    .takeaway-card p { color: var(--body); line-height: 1.7; font-size: 0.95em; }
+
+    /* ---------- BibTeX ---------- */
+    .bibtex-box { position: relative; max-width: 960px; margin: 0 auto; }
+
+    .bibtex-box pre {
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: 24px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #374151;
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover { background: var(--primary); }
+    .copy-btn:focus-visible { outline: 3px solid rgba(52, 88, 142, 0.5); outline-offset: 2px; }
+
     /* ---------- Citation ---------- */
     .citation {
       background: var(--soft);
@@ -598,6 +657,49 @@
       </div>
     </div>
 
+    <!-- ===================== Results ===================== -->
+    <div class="section" id="results">
+      <h2 class="section-title">Results</h2>
+      <div class="table-card">
+        <h3>Accuracy (%) with and without Audio-R1</h3>
+        <div class="table-wrapper">
+          <table class="results-table">
+            <thead>
+              <tr><th>Model</th><th>MMAR</th><th>MMAU-mini</th><th>MMAU-Pro</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="method-name">Gemma4-e4b</td><td>50.0</td><td>62.3</td><td>48.7</td></tr>
+              <tr class="r1-row"><td class="method-name">+ Audio-R1</td><td class="best-value">52.8 <span class="gain">+2.8</span></td><td class="best-value">64.1 <span class="gain">+1.8</span></td><td class="best-value">50.5 <span class="gain">+1.8</span></td></tr>
+              <tr><td class="method-name">AF-Next-Think</td><td>56.0</td><td>74.5</td><td>54.1</td></tr>
+              <tr class="r1-row"><td class="method-name">+ Audio-R1</td><td class="best-value">57.0 <span class="gain">+1.0</span></td><td class="best-value">77.2 <span class="gain">+2.7</span></td><td class="best-value">56.0 <span class="gain">+1.9</span></td></tr>
+              <tr><td class="method-name">Qwen2.5-Omni</td><td>58.2</td><td>73.4</td><td>55.1</td></tr>
+              <tr class="r1-row"><td class="method-name">+ Audio-R1</td><td class="best-value">62.6 <span class="gain">+4.4</span></td><td class="best-value">77.2 <span class="gain">+3.8</span></td><td class="best-value">58.7 <span class="gain">+3.6</span></td></tr>
+              <tr><td class="method-name">Qwen3-Omni</td><td>68.5</td><td>74.9</td><td>61.5</td></tr>
+              <tr class="r1-row"><td class="method-name">+ Audio-R1</td><td class="best-value">70.3 <span class="gain">+1.8</span></td><td class="best-value">77.5 <span class="gain">+2.6</span></td><td class="best-value">63.6 <span class="gain">+2.1</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="takeaway-grid">
+        <div class="takeaway-card">
+          <span class="tk-label">Q1 · Gains on every backbone</span>
+          <h3>Audio-R1 improves <em>every backbone on every benchmark</em>.</h3>
+          <p>Gains range from +1.0 to +4.4 percentage points, with consistent improvements on self-supervised tasks.</p>
+        </div>
+        <div class="takeaway-card">
+          <span class="tk-label">Q2 · Tasks are complementary</span>
+          <h3>The tasks give complementary signals; <em>combining all three is best</em>.</h3>
+          <p>Each single-task model improves over the base on every task and ranks second on its corresponding task; multi-task training is best on all tasks and benchmarks.</p>
+        </div>
+        <div class="takeaway-card">
+          <span class="tk-label">Q3 · Audio-R1 reasons better</span>
+          <h3>Audio-R1 improves <em>reasoning quality</em>, not just accuracy.</h3>
+          <p>It raises all judge scores; SFT on the same data achieves similar accuracy but mostly scores below the base.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- ===================== Demo ===================== -->
     <div class="section" id="demo">
       <h2 class="section-title">Demo</h2>
@@ -654,6 +756,20 @@
       </div>
     </div>
 
+    <!-- ===================== BibTeX ===================== -->
+    <div class="section" id="bibtex">
+      <h2 class="section-title">BibTeX</h2>
+      <div class="bibtex-box">
+        <button type="button" class="copy-btn" id="copyBibtex">Copy</button>
+        <pre><code id="bibtexText">@article{jeong2026audior1,
+  title   = {Audio-R1: Audio Reasoning through Reinforcement Learning on Self-Supervised Tasks},
+  author  = {Jeong, Jihoon and Ravanelli, Mirco and Wang, Zhepei and Subakan, Cem},
+  journal = {arXiv preprint arXiv:2610.34609},
+  year    = {2026}
+}</code></pre>
+      </div>
+    </div>
+
   </div>
 
   <!-- ===================== Footer ===================== -->
@@ -670,6 +786,19 @@
 </div>
 
 <script src="static/js/demos.js"></script>
+<script>
+(function () {
+  const btn = document.getElementById("copyBibtex");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    const text = document.getElementById("bibtexText").textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = "Copied!";
+      setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+    });
+  });
+})();
+</script>
 <script>
 (function () {
   const demos = window.DEMOS || [];
