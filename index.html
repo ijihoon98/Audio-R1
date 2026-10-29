@@ -396,31 +396,43 @@
       box-sizing: border-box;
       width: 100%;
       max-width: 820px;
-      min-height: 128px;
-      margin: 20px auto 0;
-      padding: 18px 26px;
-      background: rgba(52, 88, 142, 0.06);
-      border: 1px solid rgba(52, 88, 142, 0.18);
-      border-radius: 12px;
-      color: var(--body);
-      line-height: 1.7;
-      text-align: center;
+      min-height: 120px;
+      margin: 24px auto 0;
+      padding: 22px 28px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(45, 55, 72, 0.08);
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+    }
+    .panel-note .note-icon {
+      flex: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(52, 88, 142, 0.1);
+      color: var(--primary);
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
     }
+    .panel-note .note-icon svg { width: 24px; height: 24px; }
+    .panel-note .note-body { flex: 1; min-width: 0; }
     .panel-note .note-label {
-      flex: none;
-      font-size: 0.75em;
+      display: block;
+      font-size: 0.78em;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--primary);
+      margin-bottom: 4px;
     }
-    .panel-note b { color: var(--heading); }
-    @media (max-width: 768px) { .panel-note { min-height: 0; padding: 14px 16px; } }
+    .panel-note p { color: var(--heading); font-size: 1.05em; line-height: 1.65; margin: 0; }
+    .panel-note b { color: var(--primary); }
+    @media (max-width: 768px) { .panel-note { min-height: 0; padding: 18px; gap: 14px; align-items: flex-start; } .panel-note .note-icon { width: 40px; height: 40px; } }
     .results-table .runner-up { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
     .results-table .base-row td { background: #edf2f7; }
 
@@ -816,7 +828,7 @@
           </table>
         </div>
       </div>
-        <p class="panel-note"><span class="note-label">Takeaway</span><span>Gains range from <b>+1.0 to +4.4 percentage points</b>, with consistent improvements on self-supervised tasks.</span></p>
+        <div class="panel-note"><span class="note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><div class="note-body"><span class="note-label">Key takeaway</span><p>Gains range from <b>+1.0 to +4.4 percentage points</b>, with consistent improvements on self-supervised tasks.</p></div></div>
       </div>
 
       <!-- Q2 -->
@@ -838,13 +850,13 @@
             </table>
           </div>
         </div>
-        <p class="panel-note"><span class="note-label">Takeaway</span><span>Each single-task model improves over the base on every task and <b>ranks second</b> on its own task (underlined); multi-task training is <b>best on all tasks and benchmarks</b>.</span></p>
+        <div class="panel-note"><span class="note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><div class="note-body"><span class="note-label">Key takeaway</span><p>Each single-task model improves over the base on every task and <b>ranks second</b> on its own task (underlined); multi-task training is <b>best on all tasks and benchmarks</b>.</p></div></div>
       </div>
 
       <!-- Q3 -->
       <div class="result-panel" id="panel-q3" role="tabpanel" aria-labelledby="tab-q3" hidden>
         <img class="panel-figure narrow" src="static/figures/results_sft_vs_rl.png" alt="Judge scores (completeness, logical coherence, audio groundedness) and accuracy for the base model, SFT and Audio-R1, on self-supervised tasks and on benchmarks" loading="lazy">
-        <p class="panel-note"><span class="note-label">Takeaway</span><span>Audio-R1 <b>raises all judge scores</b>; SFT on the same data achieves similar accuracy but mostly scores <b>below the base</b>.</span></p>
+        <div class="panel-note"><span class="note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></span><div class="note-body"><span class="note-label">Key takeaway</span><p>Audio-R1 <b>raises all judge scores</b>; SFT on the same data achieves similar accuracy but mostly scores <b>below the base</b>.</p></div></div>
       </div>
     </div>
 
